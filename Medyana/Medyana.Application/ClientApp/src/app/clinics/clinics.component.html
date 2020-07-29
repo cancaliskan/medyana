@@ -1,0 +1,25 @@
+<h1>Clinics</h1>
+
+<p *ngIf="!clinics"><em>Loading...</em></p>
+<p>
+    <a [routerLink]="['/add']" class="btn btn-primary float-right mb-3">New Clinic</a>
+</p>
+
+<table class="table table-sm table-hover" *ngIf="clinics?.length>0">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let clinic of clinics">
+            <td>{{ clinic.id }}</td>
+            <td><a [routerLink]="['/clinic/', clinic.id]">{{ clinic.name }}</a></td>
+            <td><a [routerLink]="['/clinic/edit/', clinic.id]" class="btn btn-primary btn-sm float-right">Edit</a></td>
+            <td><a [routerLink]="" (click)="delete(clinic.id)" class="btn btn-danger btn-sm float-right">Delete</a></td>
+        </tr>
+    </tbody>
+</table>

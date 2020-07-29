@@ -12,6 +12,7 @@ using Medyana.Business.Contracts;
 using Medyana.Business.Services;
 using Medyana.DataAccess.Context;
 using Medyana.DataAccess.UnitOfWork;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.OpenApi.Models;
 
 namespace Medyana.Application
@@ -68,6 +69,11 @@ namespace Medyana.Application
             });
 
             #endregion
+
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/dist";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,6 +84,7 @@ namespace Medyana.Application
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSpaStaticFiles();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -89,6 +96,16 @@ namespace Medyana.Application
             app.UseSwaggerUI(option =>
             {
                 option.SwaggerEndpoint("/swagger/CoreSwagger/swagger.json", "Amatis");
+            });
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "ClientApp";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
             });
         }
     }
