@@ -10,7 +10,7 @@
 ## Technologies
 
 * .Net Core 3.1
-* Angular 8
+* Angular
 * Entity Framework Core
 * NUnit
 * MSSQL
