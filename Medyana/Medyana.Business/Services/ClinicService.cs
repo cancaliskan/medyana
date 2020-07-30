@@ -29,6 +29,7 @@ namespace Medyana.Business.Services
                 {
                     response.IsSucceed = false;
                     response.ErrorMessage = "Invalid clinic id";
+                    return response;
                 }
 
                 var clinic = _unitOfWork.ClinicRepository.GetById(id);

@@ -61,7 +61,7 @@ namespace Medyana.Business.Services
 
             try
             {
-                var equipments = _unitOfWork.EquipmentRepository.GetAll().Where(x => x.IsActive);
+                var equipments = _unitOfWork.EquipmentRepository.GetAll();
                 response.IsSucceed = true;
                 response.Result = equipments;
             }
