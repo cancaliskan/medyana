@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ClinicService } from '../services/clinic.service';
-import { Clinic,Result } from '../models/clinic';
+import { Clinic, Result } from '../models/clinic';
 
 @Component({
   selector: 'app-clinic-add-edit',
