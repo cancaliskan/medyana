@@ -60,7 +60,7 @@ namespace Medyana.Business.Services
 
             try
             {
-                var clinics = _unitOfWork.ClinicRepository.GetAll().Where(x => x.IsActive);
+                var clinics = _unitOfWork.ClinicRepository.GetAll();
                 response.IsSucceed = true;
                 response.Result = clinics;
             }

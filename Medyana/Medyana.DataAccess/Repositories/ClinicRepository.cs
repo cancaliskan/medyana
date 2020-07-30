@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 using Medyana.DataAccess.Context;
@@ -16,7 +17,12 @@ namespace Medyana.DataAccess.Repositories
 
         public new Clinic GetById(int id)
         {
-            return ApplicationContext.Clinics.Include("Equipments").ToList().FirstOrDefault(x => x.Id == id);
+            return ApplicationContext.Clinics.Include("Equipments").ToList().FirstOrDefault(x => x.Id == id && x.IsActive);
+        }
+
+        public new IEnumerable<Clinic> GetAll()
+        {
+            return ApplicationContext.Clinics.Include("Equipments").Where(x => x.IsActive).ToList();
         }
 
         public ApplicationDbContext ApplicationContext => Context as ApplicationDbContext;
