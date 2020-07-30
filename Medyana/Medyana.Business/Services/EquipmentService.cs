@@ -61,7 +61,7 @@ namespace Medyana.Business.Services
 
             try
             {
-                var equipments = _unitOfWork.EquipmentRepository.GetAll().Where(x => x.IsActive);
+                var equipments = _unitOfWork.EquipmentRepository.GetAll();
                 response.IsSucceed = true;
                 response.Result = equipments;
             }
@@ -81,6 +81,18 @@ namespace Medyana.Business.Services
             try
             {
                 response = EquipmentValidation(entity, response);
+                if (!response.IsSucceed)
+                {
+                    return response;
+                }
+
+                var clinic = _unitOfWork.ClinicRepository.GetById(entity.ClinicId);
+                if (clinic == null)
+                {
+                    response.IsSucceed = false;
+                    response.ErrorMessage = "Clinic could not found";
+                    return response;
+                }
 
                 entity.CreatedDate = DateTime.Now;
                 entity.IsActive = true;

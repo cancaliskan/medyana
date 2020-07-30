@@ -6,6 +6,5 @@ namespace Medyana.DataAccess.Contracts
 {
     public interface IClinicRepository : IRepository<Clinic>
     {
-        //Clinic GetClinicWithEquipments(int id);
     }
 }

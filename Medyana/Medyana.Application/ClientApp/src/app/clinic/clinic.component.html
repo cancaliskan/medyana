@@ -26,12 +26,13 @@
                 <td>Equipments</td>
                 <td>
                     <tr *ngFor="let equipment of clinic.equipments">
-                        <td> <a [routerLink]="['/equipment/',equipment.id]">{{ equipment.name }}</a></td>
+                        <td> <a [routerLink]="['/equipments/',equipment.id]">{{ equipment.name }}</a></td>
                     </tr>
                 </td>
             </tr>
         </tbody>
     </table>
-
+    <br>
+    <button class="btn btn-secondary float-left" [routerLink]="['/clinics']">Back</button>
 </ng-container>
 <ng-template #loading>Loading…</ng-template>

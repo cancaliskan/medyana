@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medyana.Business", "Medyana
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medyana.Common", "Medyana.Common\Medyana.Common.csproj", "{899F6BAD-BB69-4246-BDF1-1A3366305888}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medyana.Application", "Medyana.Application\Medyana.Application.csproj", "{5E27CFE5-42D5-4EEE-A977-4F133B5E11CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medyana.Application", "Medyana.Application\Medyana.Application.csproj", "{5E27CFE5-42D5-4EEE-A977-4F133B5E11CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medyana.Tests", "Medyana.Tests\Medyana.Tests.csproj", "{6EE8EC7A-213B-4A45-8CC2-4654E689F163}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{5E27CFE5-42D5-4EEE-A977-4F133B5E11CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E27CFE5-42D5-4EEE-A977-4F133B5E11CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E27CFE5-42D5-4EEE-A977-4F133B5E11CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EE8EC7A-213B-4A45-8CC2-4654E689F163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EE8EC7A-213B-4A45-8CC2-4654E689F163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EE8EC7A-213B-4A45-8CC2-4654E689F163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EE8EC7A-213B-4A45-8CC2-4654E689F163}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

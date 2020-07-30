@@ -29,6 +29,7 @@ namespace Medyana.Business.Services
                 {
                     response.IsSucceed = false;
                     response.ErrorMessage = "Invalid clinic id";
+                    return response;
                 }
 
                 var clinic = _unitOfWork.ClinicRepository.GetById(id);
@@ -54,49 +55,13 @@ namespace Medyana.Business.Services
             return response;
         }
 
-        //public Response<Clinic> GetClinicWithEquipments(int id)
-        //{
-        //    var response = new Response<IEnumerable<Equipment>>();
-
-        //    try
-        //    {
-        //        if (id <= 0)
-        //        {
-        //            response.IsSucceed = false;
-        //            response.ErrorMessage = "Invalid clinic id";
-        //        }
-
-        //        var clinic = _unitOfWork.ClinicRepository.GetById(id);
-        //        if (clinic == null)
-        //        {
-        //            response.IsSucceed = false;
-        //            response.ErrorMessage = "Clinic could not found";
-        //            return response;
-        //        }
-
-        //        if (clinic.IsActive)
-        //        {
-        //            var equipments = _unitOfWork.ClinicRepository.GetClinicWithEquipments(id);
-        //            response.IsSucceed = true;
-        //            response.Result = equipments;
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        response.IsSucceed = false;
-        //        response.ErrorMessage = e.Message;
-        //    }
-
-        //    return response;
-        //}
-
         public Response<IEnumerable<Clinic>> GetAll()
         {
             var response = new Response<IEnumerable<Clinic>>();
 
             try
             {
-                var clinics = _unitOfWork.ClinicRepository.GetAll().Where(x => x.IsActive);
+                var clinics = _unitOfWork.ClinicRepository.GetAll();
                 response.IsSucceed = true;
                 response.Result = clinics;
             }
@@ -190,6 +155,15 @@ namespace Medyana.Business.Services
                 existClinic.DeletedDate = DateTime.Now;
                 existClinic.IsActive = false;
 
+                var equipmentList = new List<Equipment>();
+                foreach (var equipment in existClinic.Equipments)
+                {
+                    equipment.IsActive = false;
+                    equipment.DeletedDate=DateTime.Now;
+                    equipmentList.Add(equipment);
+                }
+
+                _unitOfWork.EquipmentRepository.UpdateRange(equipmentList);
                 _unitOfWork.ClinicRepository.Update(existClinic);
                 _unitOfWork.Complete();
                 _unitOfWork.Dispose();
