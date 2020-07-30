@@ -9,7 +9,7 @@ import { Clinic } from '../models/clinic';
   styleUrls: ['./clinics.component.scss']
 })
 export class ClinicsComponent implements OnInit {
-  clinics: Observable<Clinic>;
+  clinics$: Observable<Clinic>;
 
   constructor(private clinicService: ClinicService) { }
 
@@ -20,7 +20,7 @@ export class ClinicsComponent implements OnInit {
   loadClinics() {
     this.clinicService.getClinics().subscribe(
       (res: any) => {
-        this.clinics = res.result;
+        this.clinics$ = res.result;
       },
     );
   }

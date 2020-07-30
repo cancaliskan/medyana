@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Clinic } from '../models/clinic';
+import { Clinic, Result } from '../models/clinic';
 
 @Injectable({
   providedIn: 'root'
@@ -47,8 +47,8 @@ saveClinic(blogPost): Observable<Clinic> {
   );
 }
 
-updateClinic(id: number, clinic): Observable<Clinic> {
-  return this.http.put<Clinic>(this.myAppUrl + this.myApiUrl + id, JSON.stringify(clinic), this.httpOptions)
+updateClinic(clinic): Observable<Clinic> {
+  return this.http.put<Clinic>(this.myAppUrl + this.myApiUrl, JSON.stringify(clinic), this.httpOptions)
   .pipe(
     retry(1),
     catchError(this.errorHandler)

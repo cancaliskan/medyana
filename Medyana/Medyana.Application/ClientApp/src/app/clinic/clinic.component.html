@@ -1,1 +1,29 @@
-<p>clinic works!</p>
+<ng-container *ngIf="clinic$ as clinic; else loading">
+
+    <p></p>
+
+    <h1></h1>
+
+    <table style="width: 100%;">
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>{{ clinic.id }}</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>{{ clinic.name }}</td>
+            </tr>
+            <tr>
+                <td>Creation date and time</td>
+                <td>{{ clinic.createdDate }}</td>
+            </tr>
+            <tr>
+                <td>Last updated date and time</td>
+                <td>{{ clinic.updateDate }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</ng-container>
+<ng-template #loading>Loading…</ng-template>

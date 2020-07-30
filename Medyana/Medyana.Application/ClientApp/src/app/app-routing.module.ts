@@ -5,10 +5,10 @@ import { ClinicComponent } from './clinic/clinic.component';
 import { ClinicAddEditComponent } from './clinic-add-edit/clinic-add-edit.component';
 
 const routes: Routes = [
-  { path: '', component: ClinicsComponent, pathMatch: 'full' },
-  { path: 'clinic/:id', component: ClinicComponent },
-  { path: 'add', component: ClinicAddEditComponent },
-  { path: 'clinic/edit/:id', component: ClinicAddEditComponent },
+  { path: 'clinics', component: ClinicsComponent, pathMatch: 'full' },
+  { path: 'clinics/add', component: ClinicAddEditComponent },
+  { path: 'clinics/:id', component: ClinicComponent },
+  { path: 'clinics/edit/:id', component: ClinicAddEditComponent },
   { path: '**', redirectTo: '/' }
 ];
 

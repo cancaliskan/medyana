@@ -120,6 +120,7 @@ namespace Medyana.Business.Services
                 }
 
                 existClinic.UpdateDate = DateTime.Now;
+                existClinic.Name = entity.Name;
 
                 _unitOfWork.ClinicRepository.Update(existClinic);
                 _unitOfWork.Complete();
