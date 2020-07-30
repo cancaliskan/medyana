@@ -154,6 +154,15 @@ namespace Medyana.Business.Services
                 existClinic.DeletedDate = DateTime.Now;
                 existClinic.IsActive = false;
 
+                var equipmentList = new List<Equipment>();
+                foreach (var equipment in existClinic.Equipments)
+                {
+                    equipment.IsActive = false;
+                    equipment.DeletedDate=DateTime.Now;
+                    equipmentList.Add(equipment);
+                }
+
+                _unitOfWork.EquipmentRepository.UpdateRange(equipmentList);
                 _unitOfWork.ClinicRepository.Update(existClinic);
                 _unitOfWork.Complete();
                 _unitOfWork.Dispose();

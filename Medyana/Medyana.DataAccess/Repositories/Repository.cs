@@ -37,6 +37,11 @@ namespace Medyana.DataAccess.Repositories
             _dbSet.Update(entity);
         }
 
+        public void UpdateRange(IEnumerable<T> entities)
+        {
+            _dbSet.UpdateRange(entities);
+        }
+
         public void Remove(int id)
         {
             _dbSet.Remove(GetById(id));

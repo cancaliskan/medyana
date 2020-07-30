@@ -8,6 +8,7 @@ namespace Medyana.DataAccess.Contracts
         IEnumerable<T> GetAll();
         void Add(T entity);
         void Update(T entity);
+        void UpdateRange(IEnumerable<T> entities);
         void Remove(int id);
     }
 }
