@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ClinicService } from '../services/clinic.service';
-import { Clinic } from '../models/clinic';
+import { Clinic,Result } from '../models/clinic';
 
 @Component({
   selector: 'app-clinic-add-edit',
@@ -12,16 +12,16 @@ import { Clinic } from '../models/clinic';
 export class ClinicAddEditComponent implements OnInit {
   form: FormGroup;
   actionType: string;
-  name: string;
+  formName: string;
   id: number;
   errorMessage: any;
-  existingClinic: Clinic;
+  existingClinic: Result;
 
   // tslint:disable-next-line: max-line-length
   constructor(private clinicService: ClinicService, private formBuilder: FormBuilder, private avRoute: ActivatedRoute, private router: Router) {
     const idParam = 'id';
     this.actionType = 'Add';
-    this.name = 'name';
+    this.formName = 'name';
     if (this.avRoute.snapshot.params[idParam]) {
       this.id = this.avRoute.snapshot.params[idParam];
     }
@@ -40,7 +40,7 @@ export class ClinicAddEditComponent implements OnInit {
       this.clinicService.getClinic(this.id).subscribe(
         (res: any) => {
           this.existingClinic = res.result;
-          this.form.controls[this.name].setValue(res.result.name);
+          this.form.controls[this.formName].setValue(res.result.name);
         },
       );
     }
@@ -53,11 +53,11 @@ export class ClinicAddEditComponent implements OnInit {
 
     if (this.actionType === 'Add') {
       const clinic: any = {
-        name: this.form.get(this.name).value,
+        name: this.form.get(this.formName).value,
       };
 
       this.clinicService.saveClinic(clinic)
-        .subscribe((data) => {
+        .subscribe((data: any) => {
           this.router.navigate(['/clinics', data.result.id]);
         });
     }
@@ -65,7 +65,7 @@ export class ClinicAddEditComponent implements OnInit {
     if (this.actionType === 'Edit') {
       const clinic: any = {
         id: this.existingClinic.id,
-        name: this.form.get(this.name).value
+        name: this.form.get(this.formName).value
       };
 
       this.clinicService.updateClinic(clinic)
@@ -79,5 +79,5 @@ export class ClinicAddEditComponent implements OnInit {
     this.router.navigate(['/clinics']);
   }
 
-  get getName() { return this.form.get(this.name); }
+  get name() { return this.form.get(this.formName); }
 }

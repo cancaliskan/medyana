@@ -70,6 +70,11 @@ namespace Medyana.Application
 
             #endregion
 
+            services.AddControllersWithViews()
+                     .AddNewtonsoftJson(options =>
+                         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                     );
+
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";

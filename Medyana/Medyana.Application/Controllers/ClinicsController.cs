@@ -37,6 +37,13 @@ namespace Medyana.Application.Controllers
             return response;
         }
 
+        //[HttpGet("GetEquipments/{id}")]
+        //public Response<IEnumerable<Equipment>> GetEquipments(int id)
+        //{
+        //    var response = _clinicService.GetEquipmentsById(id);
+        //    return response;
+        //}
+
         [HttpPost]
         public Response<Clinic> Post([FromBody] ClinicModel clinic)
         {

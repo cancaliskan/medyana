@@ -39,8 +39,8 @@ getClinic(postId: number): Observable<Clinic> {
   );
 }
 
-saveClinic(blogPost): Observable<Clinic> {
-  return this.http.post<Clinic>(this.myAppUrl + this.myApiUrl, JSON.stringify(blogPost), this.httpOptions)
+saveClinic(clinic): Observable<Clinic> {
+  return this.http.post<Clinic>(this.myAppUrl + this.myApiUrl, JSON.stringify(clinic), this.httpOptions)
   .pipe(
     retry(1),
     catchError(this.errorHandler)

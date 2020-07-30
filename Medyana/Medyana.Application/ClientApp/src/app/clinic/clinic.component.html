@@ -22,6 +22,14 @@
                 <td>Last updated date and time</td>
                 <td>{{ clinic.updateDate }}</td>
             </tr>
+            <tr>
+                <td>Equipments</td>
+                <td>
+                    <tr *ngFor="let equipment of clinic.equipments">
+                        <td> <a [routerLink]="['/equipment/',equipment.id]">{{ equipment.name }}</a></td>
+                    </tr>
+                </td>
+            </tr>
         </tbody>
     </table>
 
