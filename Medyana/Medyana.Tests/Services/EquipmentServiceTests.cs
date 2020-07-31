@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using Moq;
+using NUnit.Framework;
+
 using Medyana.Business.Services;
 using Medyana.Common.Contracts;
 using Medyana.DataAccess.UnitOfWork;
 using Medyana.Domain.Entities;
 using Medyana.Tests.Helpers;
-using Moq;
-using NUnit.Framework;
 
 namespace Medyana.Tests.Services
 {
@@ -24,24 +26,6 @@ namespace Medyana.Tests.Services
             _assertHelper = new AssertHelper<Equipment>();
             _unitOfWork = new Mock<IUnitOfWork>();
             _equipmentService = new EquipmentService(_unitOfWork.Object);
-        }
-
-        [TestCase(0)]
-        public void GetById_InvalidEquipment_Fail(int id)
-        {
-            // arrange
-            var response = new Response<Equipment>()
-            {
-                IsSucceed = false,
-                ErrorMessage = "Invalid equipment id",
-                Result = null
-            };
-
-            // act
-            var result = _equipmentService.GetById(id);
-
-            // assert
-            _assertHelper.Assertion(response, result);
         }
 
         [TestCase(2)]
@@ -175,30 +159,6 @@ namespace Medyana.Tests.Services
             var response = new Response<Equipment>()
             {
                 ErrorMessage = "Unit Price must be grater than 0.01"
-            };
-
-            // act
-            var result = _equipmentService.Add(equipment);
-
-            // assert
-            _assertHelper.Assertion(response, result);
-        }
-
-        [Test]
-        public void Add_InvalidUsageRage_Fail()
-        {
-            // arrange
-            var equipment = new Equipment()
-            {
-                Name = "Name",
-                Quantity = 4,
-                UnitPrice = 5,
-                UsageRate = -1
-            };
-
-            var response = new Response<Equipment>()
-            {
-                ErrorMessage = "Usage Rate must be between 0 and 100"
             };
 
             // act

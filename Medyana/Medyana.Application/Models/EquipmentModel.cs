@@ -2,7 +2,7 @@
 
 namespace Medyana.Application.Models
 {
-    public class EquipmentModel
+    public sealed class EquipmentModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

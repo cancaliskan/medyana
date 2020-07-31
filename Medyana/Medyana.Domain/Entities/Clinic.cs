@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace Medyana.Domain.Entities
 {
-    public class Clinic : BaseEntity
+    public sealed class Clinic : BaseEntity
     {
         public Clinic()
         {
