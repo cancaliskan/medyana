@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace Medyana.Application.Models
+﻿namespace Medyana.Application.Models
 {
-    public class ClinicModel
+    public sealed class ClinicModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

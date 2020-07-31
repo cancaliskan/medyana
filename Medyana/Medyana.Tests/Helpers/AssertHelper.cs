@@ -1,5 +1,6 @@
-﻿using Medyana.Common.Contracts;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+
+using Medyana.Common.Contracts;
 
 namespace Medyana.Tests.Helpers
 {

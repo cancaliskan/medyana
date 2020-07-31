@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 
 using AutoMapper;
+using Microsoft.OpenApi.Models;
 
 using Medyana.Business.Contracts;
 using Medyana.Business.Services;
 using Medyana.DataAccess.Context;
 using Medyana.DataAccess.UnitOfWork;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
-using Microsoft.OpenApi.Models;
 
 namespace Medyana.Application
 {
@@ -70,10 +70,12 @@ namespace Medyana.Application
 
             #endregion
 
+            #region ClientApp
+
             services.AddControllersWithViews()
-                     .AddNewtonsoftJson(options =>
-                         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-                     );
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
 
             services.AddSpaStaticFiles(configuration =>
             {
@@ -88,6 +90,8 @@ namespace Medyana.Application
                         .AllowAnyHeader()
                         .AllowCredentials());
             });
+
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -106,11 +110,17 @@ namespace Medyana.Application
                 endpoints.MapControllers();
             });
 
+            #region Swagger
+
             app.UseSwagger();
             app.UseSwaggerUI(option =>
             {
                 option.SwaggerEndpoint("/swagger/CoreSwagger/swagger.json", "Amatis");
             });
+
+            #endregion
+
+            #region SPA
 
             app.UseSpa(spa =>
             {
@@ -121,6 +131,8 @@ namespace Medyana.Application
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            #endregion
         }
     }
 }

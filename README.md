@@ -11,9 +11,10 @@
 
 * .Net Core 3.1
 * Angular
+* MSSQL
 * Entity Framework Core
 * NUnit
-* MSSQL
+* Moq
 * Swagger
 
 ## Notes
