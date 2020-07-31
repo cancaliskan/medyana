@@ -1,0 +1,127 @@
+<p>
+  Detail Of Selected Equipment
+</p>
+<form id="equipmentForm" (submit)="onSaveClick($event)">
+<dx-form
+  id="equipmentDetailForm"
+  [formData]="equipmentRecord"
+  [readOnly]="isDisabled()"
+>
+  <dxi-item itemType="group" [colCount]="2">
+    <!-- Id -->
+    <dxi-item dataField="id" [disabled]="true" [label]="{ text: 'Id' }">
+    </dxi-item>
+
+    <!-- Name -->
+    <dxi-item [dataField]="'name'" [label]="{ text: 'Name' }">
+      <dxi-validation-rule
+        type="required"
+        message="Name is required"
+      ></dxi-validation-rule>
+    </dxi-item>
+
+    <dxi-item
+      [dataField]="'supplyDate'"
+      editorType="dxDateBox"
+      [label]="{ text: 'Supply Date' }"
+    >
+    </dxi-item>
+
+    <dxi-item
+      [dataField]="'quantity'"
+      editorType="dxNumberBox"
+      [editorOptions]="{
+        showSpinButtons: true,
+        mode: 'number',
+        format: '#0.0',
+        max: 999999,
+        min: 0.1
+      }"
+      [label]="{ text: 'Quantity' }"
+    >
+      <dxi-validation-rule
+        type="required"
+        message="Quantity is required"
+      ></dxi-validation-rule>
+      <dxi-validation-rule type="numeric" message="Please enter numeric value">
+      </dxi-validation-rule>
+    </dxi-item>
+
+    <dxi-item
+      [dataField]="'unitPrice'"
+      [label]="{ text: 'UnitPrice' }"
+      editorType="dxNumberBox"
+      [editorOptions]="{
+        showSpinButtons: true,
+        mode: 'number',
+        format: '#0.0',
+        max: 999999,
+        min: 0.1
+      }"
+    >
+      <dxi-validation-rule
+        type="required"
+        message="UnitPrice is required"
+      ></dxi-validation-rule>
+      <dxi-validation-rule type="numeric" message="Please enter numeric value">
+      </dxi-validation-rule>
+    </dxi-item>
+
+    <dxi-item
+      [dataField]="'usageRate'"
+      [label]="{ text: 'UsageRate' }"
+      editorType="dxNumberBox"
+      [editorOptions]="{
+        showSpinButtons: true,
+        mode: 'number',
+        format: '#0.0',
+        max: 100,
+        min: 0.1
+      }"
+    >
+    </dxi-item>
+
+    <dxi-item
+      dataField="clinicId"
+      colSpan="2"
+      editorType="dxSelectBox"
+      [editorOptions]="{
+        items: clinicList,
+        searchEnabled: true,
+        displayExpr: 'name',
+        valueExpr: 'id'
+      }"
+    >
+      <dxi-validation-rule
+        type="required"
+        message="Clinic is required"
+      ></dxi-validation-rule>
+    </dxi-item>
+
+    <!-- Back Button -->
+    <dxi-item
+      colSpan="1"
+      itemType="button"
+      alignment="left"
+      [buttonOptions]="{
+        useSubmitBehavior: false,
+        text: 'Close',
+        type: 'success',
+        onClick: onCloseClick
+      }"
+    ></dxi-item>
+
+    <!-- Submit Buttons -->
+    <dxi-item
+      colSpan="1"
+      itemType="button"
+      alignment="right"
+      [buttonOptions]="{
+        useSubmitBehavior: true,
+        text: 'Save',
+        type: 'success'
+      }"
+    ></dxi-item>
+  </dxi-item>
+</dx-form>
+</form>

@@ -1,43 +1,38 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
-
-import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HttpClient, HttpInterceptor, HttpHandler } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { HomeComponent } from './home/home.component';
 
-import { ClinicsComponent } from './clinics/clinics.component';
-import { ClinicComponent } from './clinic/clinic.component';
-import { ClinicAddEditComponent } from './clinic-add-edit/clinic-add-edit.component';
-import { ClinicService } from './services/clinic.service';
+import { ClinicModule } from './clinic/clinic.module';
+import { ClinicListComponent } from './clinic/clinic-list/clinic-list.component';
 
-import { EquipmentsComponent } from './equipments/equipments.component';
-import { EquipmentComponent } from './equipment/equipment.component';
-import { EquipmentAddEditComponent } from './equipment-add-edit/equipment-add-edit.component';
-import { EquipmentService } from './services/equipment.service';
+
+import { EquipmentModule } from './equipment/equipment.module';
+import { EquipmentListComponent  } from './equipment/equipment-list/equipment-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
-    ClinicsComponent,
-    ClinicComponent,
-    ClinicAddEditComponent,
-
-    EquipmentsComponent,
-    EquipmentComponent,
-    EquipmentAddEditComponent
+    NavMenuComponent,
+    HomeComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
-    AppRoutingModule,
-    ReactiveFormsModule
+    FormsModule,
+    ClinicModule,
+    EquipmentModule,
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'clinic-list', component: ClinicListComponent },
+      { path: 'equipment-list', component: EquipmentListComponent }
+    ])
   ],
-  providers: [
-    ClinicService,
-    EquipmentService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
