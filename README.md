@@ -18,8 +18,8 @@
 
 ## Notes
 
-* Before running the project, the database must be created by running the 'update-database' command through the 'Package Manager Console'.
+* Before running the project, the database must be created by running the 'update-database' command through the 'Package Manager Console'. The project named 'Medyana.DataAccess' should be selected as the initial project and default project on Package Manager Console screen.
 
-* The project named 'Medyana.Application' should be selected as the initial project.
+* The project named 'Medyana.Application' should be selected as the initial project for running the application.
 
 * After running the application, the API documentation can be accessed by adding '/swagger' to the end of the URL.
